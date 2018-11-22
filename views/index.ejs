@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Panorama</title>
+</head>
+<body>
+    <form action="/" method="POST">
+        <textarea type="text" placeholder="xml" name="xml" ></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <ul class="xmls">
+        <% for(var i=0; i<xmls.length; i++) {%>
+            <li class="xml">
+                <span><%= xmls[i].xml %></span>
+            </li>
+        <% } %>
+    </ul>
+</body>
+</html>
