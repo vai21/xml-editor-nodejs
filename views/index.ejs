@@ -1,22 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Panorama</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <title>Panorama</title>
 </head>
+
 <body>
-    <form action="/" method="POST">
-        <textarea type="text" placeholder="xml" name="xml" ></textarea>
+    <div class="modal" id="editXml" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit xml</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <textarea type="text" name="xml" id="xXml" class="form-control" ></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-md-center mt-5">
+            <div class="col-md-6">
+                <form action="/" method="POST">
+                    <textarea type="text" placeholder="xml" name="xml" class="form-control"></textarea>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+
         <br>
-        <button type="submit">Submit</button>
-    </form>
-    <br>
-    <ul class="xmls">
-        <% for(var i=0; i<xmls.length; i++) {%>
-            <li class="xml">
-                <span><%= xmls[i].xml %></span>
+        <ul class="xmls">
+            <% for(var i=0; i<xmls.length; i++) {%>
+            <li class="xml mt-2">
+                <span class="mt-2">
+                    <textarea class="form-control" rows="10"><%= xmls[i].xml %></textarea>
+                </span>
+                <span>
+                    <button type="button" class="btn btn-primary editXml mt-2" data-id="<%= xmls[i].id %>" data-xml="<%= xmls[i].xml %>" data-toggle="modal" data-target="#editXml">
+                        Edit
+                    </button>
+                </span>
+                <span>
+                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#editXml">
+                        Delete
+                    </button>
+                </span>
             </li>
-        <% } %>
-    </ul>
+            <% } %>
+        </ul>
+    </div>
+
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script>
+    $(document).on("click", ".editXml", function() {
+        var xId = $(this).data('id');
+        var xXml = $(this).data('xml');
+        $(".modal-body #xId").val( xId );
+        $(".modal-body #xXml").val( xXml );
+    });
+</script>
+
 </html>

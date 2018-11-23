@@ -6,20 +6,17 @@ const MongoClient = require('mongodb').MongoClient
 //const assert = require('assert')
 
 //connection url
-const url = 'mongodb://localhost:27017'
-
-//dagabase name
-const dbName = 'panorama'
+const url = 'mongodb://localhost:27017/panorama'
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 
 var db
-MongoClient.connect(url, function(err, client) {
+MongoClient.connect(url, { useNewUrlParser: true}, function(err, client) {
     if (err) return console.log(err)
     console.log("Connected successfully to server");
    
-    db = client.db(dbName);
+    db = client.db();
    
     app.listen(3000, function(){
         console.log('localhost:3000')
