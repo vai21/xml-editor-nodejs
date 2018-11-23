@@ -20,11 +20,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <textarea type="text" name="xml" id="xXml" class="form-control" ></textarea>
+                    <input type="text" hidden id="xId" >
+                    <textarea rows="10" id="xXml" class="form-control" ></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" id="updateXml" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -32,13 +33,13 @@
 
     <div class="container">
         <div class="row justify-content-md-center mt-5">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <form action="/" method="POST">
-                    <textarea type="text" placeholder="xml" name="xml" class="form-control"></textarea>
+                    <textarea type="text" rows="10" placeholder="xml" name="xml" class="form-control"></textarea>
                     <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            </form>
         </div>
 
         <br>
@@ -46,15 +47,15 @@
             <% for(var i=0; i<xmls.length; i++) {%>
             <li class="xml mt-2">
                 <span class="mt-2">
-                    <textarea class="form-control" rows="10"><%= xmls[i].xml %></textarea>
+                    <textarea disabled class="form-control" rows="10"><%= xmls[i].xml %></textarea>
                 </span>
                 <span>
-                    <button type="button" class="btn btn-primary editXml mt-2" data-id="<%= xmls[i].id %>" data-xml="<%= xmls[i].xml %>" data-toggle="modal" data-target="#editXml">
+                    <button type="button" class="btn btn-primary editXml mt-2" data-id="<%= xmls[i]._id %>" data-xml="<%= xmls[i].xml %>" data-toggle="modal" data-target="#editXml">
                         Edit
                     </button>
                 </span>
                 <span>
-                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#editXml">
+                    <button type="button" class="btn btn-danger mt-2 deleteXml" id="deleteXml" data-id="<%= xmls[i]._id %>">
                         Delete
                     </button>
                 </span>
@@ -78,5 +79,5 @@
         $(".modal-body #xXml").val( xXml );
     });
 </script>
-
+<script src="main.js"></script>
 </html>
