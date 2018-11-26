@@ -9,7 +9,7 @@ const app = express()
 //const assert = require('assert')
 
 //connection url
-const dbUrl = 'mongodb://localhost:27017/panorama'
+const dbUrl = 'mongodb://faisal:040693mfr@ds259079.mlab.com:59079/panorama'
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
