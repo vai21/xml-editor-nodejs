@@ -23,8 +23,8 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, client) {
 
     db = client.db();
 
-    app.listen(3000, function () {
-        console.log('localhost:3000')
+    app.listen(80, function () {
+        console.log('server run')
     })
 });
 
