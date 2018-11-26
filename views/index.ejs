@@ -20,7 +20,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" hidden id="xId" >
+                    <input type="text" id="xId" hidden/>
+                    <input type="text" id="xFilename" hidden/>
                     <textarea rows="10" id="xXml" class="form-control" ></textarea>
                 </div>
                 <div class="modal-footer">
@@ -47,10 +48,13 @@
             <% for(var i=0; i<xmls.length; i++) {%>
             <li class="xml mt-2">
                 <span class="mt-2">
+                    <a href="/<%= xmls[i].filename %>"><%= xmls[i].filename %></a>
+                </span>
+                <span>
                     <textarea disabled class="form-control" rows="10"><%= xmls[i].xml %></textarea>
                 </span>
                 <span>
-                    <button type="button" class="btn btn-primary editXml mt-2" data-id="<%= xmls[i]._id %>" data-xml="<%= xmls[i].xml %>" data-toggle="modal" data-target="#editXml">
+                    <button type="button" class="btn btn-primary editXml mt-2" data-id="<%= xmls[i]._id %>" data-xml="<%= xmls[i].xml %>" data-filename="<%= xmls[i].filename %>" data-toggle="modal" data-target="#editXml">
                         Edit
                     </button>
                 </span>
@@ -75,8 +79,10 @@
     $(document).on("click", ".editXml", function() {
         var xId = $(this).data('id');
         var xXml = $(this).data('xml');
+        var xFilename = $(this).data('filename')
         $(".modal-body #xId").val( xId );
         $(".modal-body #xXml").val( xXml );
+        $(".modal-body #xFilename").val( xFilename);
     });
 </script>
 <script src="main.js"></script>

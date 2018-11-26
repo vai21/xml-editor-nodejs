@@ -10,11 +10,14 @@
   "author": "faisalrasid@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "basic-auth": "^2.0.1",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongodb": "^3.1.10",
-    "npm": "^6.4.1"
+    "npm": "^6.4.1",
+    "uuid": "^3.3.2",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"

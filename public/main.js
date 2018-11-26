@@ -6,7 +6,8 @@ updateXml.addEventListener('click', function () {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             'id': $(".modal-body #xId").val(),
-            'xml': $(".modal-body #xXml").val()
+            'xml': $(".modal-body #xXml").val(),
+            'filename': $(".modal-body #xFilename").val()
         })
     })
     .then(res => {
