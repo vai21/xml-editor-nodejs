@@ -1,4 +1,3 @@
-console.log("panorama project started")
 const express = require('express')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
@@ -6,10 +5,11 @@ const auth = require('basic-auth')
 const fs = require('fs')
 const uuidv1 = require('uuid/v1');
 const app = express()
+require('dotenv').config()
 //const assert = require('assert')
 
 //connection url
-const dbUrl = 'mongodb://faisal:040693mfr@ds259079.mlab.com:59079/panorama'
+const dbUrl = process.env.DB_URL;
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
@@ -23,23 +23,25 @@ MongoClient.connect(dbUrl, { useNewUrlParser: true }, function (err, client) {
 
     db = client.db();
 
-    app.listen(process.env.PORT || 3000, function(){
-        console.log('Your node js server is running');
+    let PORT = process.env.PORT || 3000;
+
+    app.listen(PORT, function(){
+        console.log('Your node js server is running on port: ' + PORT);
     })
 });
 
 // basic auth before middleware
-app.use((req, res, next) => {
-    let user = auth(req)
+// app.use((req, res, next) => {
+//     let user = auth(req)
   
-    if (user === undefined || user['name'] !== 'adam' || user['pass'] !== 'nurdin') {
-      res.statusCode = 401
-      res.setHeader('WWW-Authenticate', 'Basic realm="Node"')
-      res.end('Unauthorized')
-    } else {
-      next()
-    }
-})
+//     if (user === undefined || user['name'] !== 'user' || user['pass'] !== 'pass') {
+//       res.statusCode = 401
+//       res.setHeader('WWW-Authenticate', 'Basic realm="Node"')
+//       res.end('Unauthorized')
+//     } else {
+//       next()
+//     }
+// })
 
 // index
 app.get('/', (req, res) => {
